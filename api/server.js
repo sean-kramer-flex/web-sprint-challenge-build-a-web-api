@@ -2,6 +2,7 @@ const express = require('express');
 const server = express();
 const logger = require('../middleware/logger')
 const projectsRouter = require('./projects/projects-router')
+const actionsRouter = require('./actions/actions-router')
 
 
 server.use(express.json())
@@ -12,5 +13,6 @@ server.get('/welcome', (req, res) => {
 })
 
 server.use('/projects', projectsRouter)
+server.use('/actions', actionsRouter)
 
 module.exports = server;
