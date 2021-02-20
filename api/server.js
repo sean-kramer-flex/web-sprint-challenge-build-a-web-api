@@ -1,7 +1,8 @@
 const express = require('express');
 const server = express();
 
-// Complete your server here!
-// Do NOT `server.listen()` inside this file!
+server.get('/welcome', (req, res) => {
+  res.send('<h2>Welcome! Server is working!</h2>')
+})
 
 module.exports = server;
