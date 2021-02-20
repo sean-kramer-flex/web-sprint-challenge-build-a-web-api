@@ -46,6 +46,18 @@ res.status(201).json(project)
 }
 })
 
+//delete a project
+router.delete('/:id', validateProjectId(), async(req, res, next) => {
+  try {
+await projects.remove(req.params.id)
+res.json({
+  message: "project successfully deleted"
+})
+  } catch(err) {
+    next(err)
+  }
+})
+
 
 
 module.exports = router
