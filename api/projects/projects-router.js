@@ -36,6 +36,16 @@ res.status(201).json(project)
   }
 })
 
+//edit a project
+router.put('/:id', validateProjectId(), async(req, res, next) => {
+try {
+const project = await projects.update(req.params.id, req.body)
+res.status(201).json(project)
+} catch(err) {
+  next(err)
+}
+})
+
 
 
 module.exports = router
