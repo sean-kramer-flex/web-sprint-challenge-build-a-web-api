@@ -59,5 +59,16 @@ res.json({
 })
 
 
+//- [ ] Inside `api/projects/projects-router.js` add an endpoint for retrieving the list of actions for a project:
+// - `[GET] /api/projects/:id/actions` sends an array of actions (or an empty array) as the body of the response.
+router.get('/:id/actions', validateProjectId(), async(req, res, next) => {
+  try {
+const actions = await projects.getProjectActions(req.params.id)
+res.json(actions)
+  } catch(err) {
+    next(err)
+  }
+})
+
 
 module.exports = router
