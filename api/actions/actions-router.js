@@ -23,5 +23,37 @@ res.json(action)
   }
 })
 
+//add an action
+router.post('/', async(req, res, next) => {
+  try {
+    const action = await actions.insert(req.body)
+    res.status(201).json(action)
+  } catch(err) {
+    next(err)
+  }
+})
+
+//edit an action
+router.put('/:id', async(req, res, next) => {
+  try {
+    const action = await actions.update(req.params.id, req.body)
+    res.status(201).json(action)
+  } catch(err) {
+    next(err)
+  }
+})
+
+//delete an action
+router.delete('/:id', async(req, res, next) => {
+  try {
+    actions.remove(req.params.id)
+    res.status(200).json({
+      message: `action ${req.params.id} deleted`,
+    })
+  } catch(err) {
+    next(err)
+  }
+})
+
 
 module.exports = router
